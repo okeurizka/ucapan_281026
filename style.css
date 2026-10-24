@@ -1,0 +1,174 @@
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: #f3e9dc;
+  font-family: Georgia, serif;
+}
+
+#intro {
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+  overflow: hidden;            /* supaya zoom tidak bikin scrollbar */
+  background: #f3e9dc;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  transition: opacity .9s;
+}
+#intro.hide { opacity: 0; pointer-events: none; }
+
+.stage {
+  position: relative;
+  width: min(300px, 80vw);
+  aspect-ratio: 3 / 2;
+  transition: transform 1.6s ease-in-out;
+}
+
+.envelope { position: absolute; inset: 0; cursor: pointer; }
+
+.body {
+  position: absolute; inset: 0;
+  background: #d9b99b;
+  border-radius: 6px;
+  box-shadow: 0 6px 16px rgba(0,0,0,.25);
+  z-index: 3;                  /* menutupi polaroid & strip di dalamnya */
+}
+
+.flap {
+  position: absolute; top: 0; left: 0;
+  width: 100%; height: 55%;
+  background: #c9a07a;
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  transform-origin: top;
+  transition: transform .7s, z-index 0s .35s;  /* z-index pindah di tengah putaran */
+  z-index: 4;
+}
+.envelope.open .flap { transform: rotateX(180deg); z-index: 0; }
+
+.blank-polaroid, .strip {
+  position: absolute;
+  background: #fff;
+  box-shadow: 0 3px 8px rgba(0,0,0,.25);
+  z-index: 1;
+  transition: transform .9s ease-out;
+}
+.blank-polaroid {
+  left: 8%; bottom: 10%;
+  width: 55%;
+  aspect-ratio: 10 / 8;
+}
+.strip {
+  left: 68%; bottom: 10%;
+  width: 20%;
+  aspect-ratio: 1 / 3;
+}
+.stage.out .blank-polaroid { transform: translateY(-90%) rotate(-4deg); }
+.stage.out .strip          { transform: translateY(-50%) rotate(5deg); }
+.envelope.open .flap { transform: rotateX(180deg); }
+
+.hint { color: #8a6f55; animation: pulse 1.6s infinite; }
+@keyframes pulse { 50% { opacity: .4; } }
+
+main { padding: 32px 0 64px; }  /* jangan beri display di sini, nanti atribut hidden tidak berfungsi */
+
+.wrap {
+  width: min(94vw, 600px);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 56px;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.row:nth-of-type(even) { flex-direction: row-reverse; }  /* ini zigzag-nya */
+
+/* polaroid */
+.polaroid {
+  width: 100%;
+  aspect-ratio: 10 / 8;
+  perspective: 1000px;
+  cursor: pointer;
+}
+.inner {
+  position: relative;
+  width: 100%; height: 100%;
+  transition: transform .7s;
+  transform-style: preserve-3d;
+}
+.polaroid.flipped .inner { transform: rotateY(180deg); }
+
+.front, .back {
+  position: absolute; inset: 0;
+  background: #fff;
+  box-shadow: 0 4px 12px rgba(0,0,0,.25);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;   /* wajib untuk Safari/iPhone */
+}
+.front { padding: 5%; }
+.front img { width: 100%; height: 100%; object-fit: cover; display: block; background: #ddd; }
+.back {
+  transform: rotateY(180deg);
+  padding: 6%;
+  display: flex; align-items: center; justify-content: center;
+  text-align: center;
+  font-size: clamp(11px, 3.3vw, 17px);
+  line-height: 1.6;
+}
+
+/* strip */
+.photostrip {
+  width: 27%;
+  background: #fff;
+  padding: 4%;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  box-shadow: 0 4px 12px rgba(0,0,0,.25);
+}
+.photostrip img { width: 100%; aspect-ratio: 1; object-fit: cover; display: block; background: #ddd; }
+
+/* miring sedikit, biar terasa foto yang ditempel */
+.row:nth-of-type(odd)  .polaroid   { transform: rotate(-2deg); }
+.row:nth-of-type(odd)  .photostrip { transform: rotate(2.5deg); }
+.row:nth-of-type(even) .polaroid   { transform: rotate(2deg); }
+.row:nth-of-type(even) .photostrip { transform: rotate(-2.5deg); }
+
+.polaroid-wrap { width: 64%; }
+
+.tap-hint {
+  margin: 14px 0 0;
+  text-align: center;
+  font-size: 13px;
+  color: #8a6f55;
+  animation: pulse 1.6s infinite;   /* pakai animasi pulse yang sudah ada */
+}
+
+.greeting {
+  margin: 0;
+  text-align: center;
+  font-weight: normal;
+  font-size: clamp(22px, 6vw, 34px);
+  color: #6b4f3a;
+}
+
+.close-btn {
+  align-self: center;
+  padding: 12px 28px;
+  border: 0;
+  border-radius: 999px;
+  background: #c9a07a;
+  color: #fff;
+  font-family: inherit;
+  font-size: 16px;
+  cursor: pointer;
+}
+.close-btn:disabled { opacity: .5; cursor: default; }
