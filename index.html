@@ -8,62 +8,112 @@
 </head>
 <body>
 
+  <!-- cetakan lily (dipakai lewat <use href="#lily">) -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <linearGradient id="petalGrad" x1="0" y1="1" x2="0" y2="0">
+        <stop offset="0" stop-color="#f08fb0"/>
+        <stop offset="1" stop-color="#fff3f7"/>
+      </linearGradient>
+
+      <path id="petal" d="M100 100 C78 78 80 40 100 10 C120 40 122 78 100 100Z"
+            fill="url(#petalGrad)" stroke="#e58aab" stroke-width="1"/>
+
+      <g id="stamen">
+        <path d="M100 100V62" stroke="#d9799c" stroke-width="2" stroke-linecap="round"/>
+        <ellipse cx="100" cy="58" rx="3.5" ry="8" fill="#a8456d"/>
+      </g>
+
+      <symbol id="lily" viewBox="0 0 200 200">
+        <use href="#petal" transform="rotate(0 100 100)"/>
+        <use href="#petal" transform="rotate(120 100 100)"/>
+        <use href="#petal" transform="rotate(240 100 100)"/>
+        <use href="#petal" transform="rotate(60 100 100)"/>
+        <use href="#petal" transform="rotate(180 100 100)"/>
+        <use href="#petal" transform="rotate(300 100 100)"/>
+        <use href="#stamen" transform="rotate(30 100 100)"/>
+        <use href="#stamen" transform="rotate(90 100 100)"/>
+        <use href="#stamen" transform="rotate(150 100 100)"/>
+        <use href="#stamen" transform="rotate(210 100 100)"/>
+        <use href="#stamen" transform="rotate(270 100 100)"/>
+        <use href="#stamen" transform="rotate(330 100 100)"/>
+        <circle cx="100" cy="100" r="5" fill="#f2c94c"/>
+      </symbol>
+    </defs>
+  </svg>
+
   <section id="intro">
-  <div class="stage" id="stage">
-    <div class="strip"></div>
-    <div class="blank-polaroid" id="blank"></div>
-    <div class="envelope" id="envelope">
-      <div class="flap"></div>
-      <div class="body"></div>
+    <div class="stage" id="stage">
+      <div class="strip"></div>
+      <div class="blank-polaroid" id="blank"></div>
+      <div class="envelope" id="envelope">
+        <div class="flap"></div>
+        <div class="body"></div>
+        <svg class="lily seal" viewBox="0 0 200 200"><use href="#lily"/></svg>
+      </div>
     </div>
+    <p class="hint" id="hint">ketuk amplopnya</p>
+  </section>
+
+  <main id="main" hidden>
+    <div class="wrap">
+      <header class="hero">
+  <div class="lily-row">
+    <svg class="lily"><use href="#lily"/></svg>
+    <svg class="lily l2"><use href="#lily"/></svg>
+    <svg class="lily l3"><use href="#lily"/></svg>
   </div>
-  <p class="hint" id="hint">ketuk amplopnya</p>
-</section>
+  <h1 class="greeting">Selamat 19 tahun, sayangku</h1>
+</header>
 
-<main id="main" hidden>
-  <div class="wrap">
-    <h1 class="greeting">Selamat 19 tahun, sayangku</h1>
-    <section class="row">
-      <div class="polaroid">
-        <div class="inner">
-          <div class="front"><img src="foto/p1.jpg" alt=""></div>
-          <div class="back"><p>Bagai bintang di siang hari<br>Menunggu gelapnya malam<br>Untuk bersinar, indah terpancar</p></div>
+      <section class="row">
+        <div class="polaroid-wrap">
+          <div class="polaroid">
+            <div class="inner">
+              <div class="front"><img src="img/p_11.jpeg" alt=""></div>
+              <div class="back"><p>Bagai bintang di siang hari<br>Menunggu gelapnya malam<br>Untuk bersinar, indah terpancar</p></div>
+            </div>
+          </div>
+          <p class="tap-hint">Ketuk polaroid</p>
         </div>
-        <p class="hint" id="hint">Ketuk polaroid</p>
-      </div>
-      <div class="photostrip">
-        <img src="foto/s1-1.jpg" alt=""><img src="foto/s1-2.jpg" alt=""><img src="foto/s1-3.jpg" alt="">
-      </div>
-    </section>
+        <div class="photostrip">
+          <img src="img/s_1.jpeg" alt=""><img src="img/s_2.jpeg" alt=""><img src="img/s_3.jpeg" alt="">
+        </div>
+      </section>
 
-    <section class="row">
-      <div class="polaroid">
-        <div class="inner">
-          <div class="front"><img src="foto/p2.jpg" alt=""></div>
-          <div class="back"><p>Mungkin surat ini hanya bisa dibaca<br>dilihat dan disenangi sesaat<br>Tetapi kenangan ini kekal menyertaimu</p></div>
+      <section class="row">
+        <div class="polaroid-wrap">
+          <div class="polaroid">
+            <div class="inner">
+              <div class="front"><img src="img/p_21.jpeg" alt=""></div>
+              <div class="back"><p>Mungkin surat ini hanya bisa dibaca<br>dilihat dan disenangi sesaat<br>Tetapi kenangan ini kekal menyertaimu</p></div>
+            </div>
+          </div>
+          <p class="tap-hint">Ketuk polaroid</p>
         </div>
-        <p class="hint" id="hint">Ketuk polaroid</p>
-      </div>
-      <div class="photostrip">
-        <img src="foto/s2-1.jpg" alt=""><img src="foto/s2-2.jpg" alt=""><img src="foto/s2-3.jpg" alt="">
-      </div>
-    </section>
+        <div class="photostrip">
+          <img src="img/s_4.jpeg" alt=""><img src="img/s_5.jpeg" alt=""><img src="img/s_6.jpeg" alt="">
+        </div>
+      </section>
 
-    <section class="row">
-      <div class="polaroid">
-        <div class="inner">
-          <div class="front"><img src="foto/p3.jpg" alt=""></div>
-          <div class="back"><p>Semoga ia selalu ada di pikiran,<br>hati nurani, dan pancaran matamu</p></div>
+      <section class="row">
+        <div class="polaroid-wrap">
+          <div class="polaroid">
+            <div class="inner">
+              <div class="front"><img src="img/p_31.jpeg" alt=""></div>
+              <div class="back"><p>Semoga ia selalu ada di pikiran,<br>hati nurani, dan pancaran matamu</p></div>
+            </div>
+          </div>
+          <p class="tap-hint">Ketuk polaroid</p>
         </div>
-        <p class="hint" id="hint">Ketuk polaroid</p>
-      </div>
-      <div class="photostrip">
-        <img src="foto/s3-1.jpg" alt=""><img src="foto/s3-2.jpg" alt=""><img src="foto/s3-3.jpg" alt="">
-      </div>
-    </section>
-  <button class="close-btn" id="close-btn">Tutup amplop</button>
-  </div>
-</main>
+        <div class="photostrip">
+          <img src="img/s_7.jpeg" alt=""><img src="img/s_8.jpeg" alt=""><img src="img/s_9.jpeg" alt="">
+        </div>
+      </section>
+
+      <button class="close-btn" id="close-btn">Tutup amplop</button>
+    </div>
+  </main>
 
   <script src="script.js"></script>
 </body>
