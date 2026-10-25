@@ -4,6 +4,8 @@ const blank = document.getElementById('blank');
 const intro = document.getElementById('intro');
 const hint = document.getElementById('hint');
 const main = document.getElementById('main');
+const songFrame = document.querySelector('.song iframe');
+const songSrc = songFrame.src;
 
 function zoomIn() {
   const r = blank.getBoundingClientRect();   // posisi polaroid sekarang di layar
@@ -67,6 +69,14 @@ function closeEnvelope() {
     hint.style.visibility = 'visible';
     closeBtn.disabled = false;
   }, 2800);
+
+    setTimeout(() => {
+    main.hidden = true;
+    songFrame.src = songSrc;       // <- baris baru: muat ulang pemutar = hentikan lagu
+    window.scrollTo(0, 0);
+    hint.style.visibility = 'visible';
+    closeBtn.disabled = false;
+  }, 2800); 
 }
 
 closeBtn.addEventListener('click', closeEnvelope);

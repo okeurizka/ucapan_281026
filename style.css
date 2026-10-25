@@ -94,7 +94,6 @@ body {
 }
 .stage.out .blank-polaroid { transform: translateY(-90%) rotate(-4deg); }
 .stage.out .strip          { transform: translateY(-50%) rotate(5deg); }
-.envelope.open .flap { transform: rotateX(180deg); }
 
 .hint { color: var(--pink-text); animation: pulse 1.6s infinite; }
 @keyframes pulse { 50% { opacity: .4; } }
