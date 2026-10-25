@@ -215,3 +215,61 @@ main { padding: 32px 0 64px; }  /* jangan beri display di sini, nanti atribut hi
   cursor: pointer;
 }
 .close-btn:disabled { opacity: .5; cursor: default; }
+
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity .8s, transform .8s;
+}
+.reveal.show {
+  opacity: 1;
+  transform: none;
+}
+
+.intro-text {
+  margin: 16px auto 0;
+  max-width: 34em;
+  text-align: center;
+  line-height: 1.8;
+  color: var(--pink-text);
+  font-size: clamp(14px, 3.8vw, 17px);
+}
+
+.song {
+  margin: 28px auto 0;
+  max-width: 420px;
+  text-align: center;
+}
+.song p {
+  margin: 0 0 10px;
+  font-size: 14px;
+  color: var(--pink-text);
+} 
+.song iframe {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: 0;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,.2);
+}
+
+.message {
+  background: #fff;
+  padding: 28px 24px;
+  border-radius: 6px;
+  box-shadow: 0 4px 12px rgba(0,0,0,.15);
+}
+.message h2 {
+  margin: 0 0 16px;
+  text-align: center;
+  font-weight: normal;
+  font-size: 22px;
+  color: var(--pink-text);
+}
+.message p {
+  margin: 0 0 14px;
+  line-height: 1.9;
+  font-size: clamp(14px, 3.8vw, 16px);
+  color: #6b4f5c;
+}
+.message p:last-child { margin-bottom: 0; }

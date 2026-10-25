@@ -70,3 +70,14 @@ function closeEnvelope() {
 }
 
 closeBtn.addEventListener('click', closeEnvelope);
+
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('show');
+      io.unobserve(e.target);        // cukup sekali, tidak diulang
+    }
+  });
+}, { threshold: 0.2 });               // muncul saat 20% terlihat
+
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
